@@ -1,9 +1,11 @@
 import React from 'react';
 
-type Props = {};
+type Props = {
+  data: any;
+};
 
-const Dashboard = (props: Props) => {
-  return <div>Dashboard</div>;
+const Dashboard = ({ data }: Props) => {
+  return <div>Dashboard {JSON.stringify(data)}</div>;
 };
 
 export default Dashboard;

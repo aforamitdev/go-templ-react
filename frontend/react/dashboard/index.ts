@@ -6,4 +6,6 @@ if (!DashboardRoot) {
   throw new Error('Could not find element with id dashboard');
 }
 const headerReactRoot = createRoot(DashboardRoot);
-headerReactRoot.render(Dashboard({}));
+const data = DashboardRoot.getAttribute('js-reactroot');
+const dataJson = data ? JSON.parse(data) : {};
+headerReactRoot.render(Dashboard({ data: dataJson }));

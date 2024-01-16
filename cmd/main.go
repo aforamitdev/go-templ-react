@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"goreact/components"
 	"log"
@@ -9,10 +10,19 @@ import (
 	"github.com/a-h/templ"
 )
 
+type Dashboard struct {
+	Data string `json:"data"`
+}
+
 func main() {
 	mux := http.NewServeMux()
 
-	mux.Handle("/dashboard", templ.Handler(components.Dashboard()))
+	d := Dashboard{Data: "dashboard data"}
+	json, err := json.Marshal(d)
+	if err != nil {
+		fmt.Println("failed to parsed json ")
+	}
+	mux.Handle("/dashboard", templ.Handler(components.Dashboard(string(json))))
 	mux.Handle("/profile", templ.Handler(components.Profile()))
 	mux.Handle("/settings", templ.Handler(components.Settings()))
 

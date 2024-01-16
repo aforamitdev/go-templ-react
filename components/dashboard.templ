@@ -1,9 +1,9 @@
 package components
 
-templ Dashboard() {
+templ Dashboard(ReactRoot string) {
 	<html>
 		<body>
-			<div id="dashboard"></div>
+			<div id="dashboard" js-reactroot={ReactRoot}></div>
 			<div>This is server-side content from templ.</div>
 			<!-- Load the React bundle created using esbuild -->
 			<script src="static/dashboard/index.js"></script>
